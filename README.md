@@ -31,7 +31,8 @@ We plan to further add Machine Learning into the project so that the project ada
 
 ## STEPS OF INSTALLATION
 1. Download the code and open it in your arduino editor\
-2. Hook the components according to the circuit design below (Attach circuit diagram from PPT)\
+2. Hook the components according to the circuit design below\
+![SS](assets/CircuitDiagram.png)
 3. The major connections will be (Arduino UNO)\
 **i) Ultra Sonic Sensor**\
         a) Trigger to pin 2\
