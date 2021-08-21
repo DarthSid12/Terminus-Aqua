@@ -29,21 +29,21 @@ Pretty much everything electrical and Arduino stuff.
 ## What's next for Terminus Aqua
 We plan to further add Machine Learning into the project so that the project adapts to the user's need all by itself, using TensorFlow Lite. Eventually, we also plan to patent our project and commercialize it in the (not-too) distant future.
 
-##STEPS OF INSTALLATION
-1. Download the code and open it in your arduino editor
-2. Hook the components according to the circuit design below (Attach circuit diagram from PPT)
-3. The major connections will be (Arduino UNO)
-**i) Ultra Sonic Sensor**
-        a) Trigger to pin 2
-        b) Echo to pin 3
-        c) VCC and GND to respective 
-**ii) Push Button**
-        a) One end to pin 7 and a 10k OHM Resistor which is connected to ground
-        b) Other end to 5 or 3.3V
-**iii) Motor and Normally Close Solenoid Valve**
-        a) Positive to positive of 12V power supply
-        b) Negative to NPN Transistor collector
-        c) 12V from external power source to Emittor of Transistor
-        d) Pin 8 of arduino to base of transistor
-4.  Connect pipe b/w valve and pump and from pump to outside where water will be recieved. 5. Place the contraption inside the water dispenser and attach the ultra sonic sensor next to output pipe
-6. Load the code onto the arduino and click on run. You can see on pressing the button the water starts filling up and when configuration mode button is pressed you can change the height of the bottl
+## STEPS OF INSTALLATION
+1. Download the code and open it in your arduino editor\
+2. Hook the components according to the circuit design below (Attach circuit diagram from PPT)\
+3. The major connections will be (Arduino UNO)\
+**i) Ultra Sonic Sensor**\
+        a) Trigger to pin 2\
+        b) Echo to pin 3\
+        c) VCC and GND to respective \
+**ii) Push Button**\
+        a) One end to pin 7 and a 10k OHM Resistor which is connected to ground\
+        b) Other end to 5 or 3.3V\
+**iii) Motor and Normally Close Solenoid Valve**\
+        a) Positive to positive of 12V power supply\
+        b) Negative to NPN Transistor collector\
+        c) 12V from external power source to Emittor of Transistor\
+        d) Pin 8 of arduino to base of transistor\
+4.  Connect pipe b/w valve and pump and from pump to outside where water will be recieved. 5. Place the contraption inside the water dispenser and attach the ultra sonic sensor next to output pipe\
+6. Load the code onto the arduino and click on run. You can see on pressing the button the water starts filling up and when configuration mode button is pressed you can change the height of the bottle\
