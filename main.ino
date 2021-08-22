@@ -1,7 +1,7 @@
+//Defining PINS
+
 int trigger = 2;
-int trigger2 = 12;
 int echo = 3;
-int echo2 = 11;
 int indicationLED = 4;
 int buzzer = 5;
 int IRoutput = 6;
@@ -18,15 +18,17 @@ float distanceFromGround = 0;
 float requiredDistance = 0;
 
 float bottleHeight = 8 ;
-float bottleHeight1 = 20;
-float bottleHeight2 = 20;
-float bottleHeight3 = 20;
-float bottleHeight4 = 20;
-float bottleHeight5 = 20;
+// float bottleHeight1 = 20;
+// float bottleHeight2 = 20;
+// float bottleHeight3 = 20;
+// float bottleHeight4 = 20;
+// float bottleHeight5 = 20;
 
 int sensorActive = 0;
 void setup() {
+  //Beginning talking to serial board
   Serial.begin(9600);
+  //Seting pin Modes
   pinMode(trigger, OUTPUT);
   pinMode(echo, INPUT);
   pinMode(trigger2, OUTPUT);
@@ -48,18 +50,18 @@ void setup() {
   // pinMode(G,OUTPUT);
 
   delay(500);
-
+  //Calculating initial Values
   distanceFromGround = doUltraSonic();
   Serial.println(distanceFromGround);
   requiredDistance = distanceFromGround - bottleHeight + 2;
   delay(2000);
 //  Serial.print("Bottle Distance is" );
 //  Serial.println(doUltraSonic());
-  bottleHeight1 = requiredDistance;
-  bottleHeight2 = requiredDistance;
-  bottleHeight3 = requiredDistance;
-  bottleHeight4 = requiredDistance;
-  bottleHeight5 = requiredDistance;
+//   bottleHeight1 = requiredDistance;
+//   bottleHeight2 = requiredDistance;
+//   bottleHeight3 = requiredDistance;
+//   bottleHeight4 = requiredDistance;
+//   bottleHeight5 = requiredDistance;
   // digitalWrite(B,HIGH);
   // digitalWrite(C,HIGH);
   // digitalWrite(A,HIGH);
@@ -69,7 +71,7 @@ void setup() {
   // digitalWrite(D,HIGH);
   Serial.print("Req. Distance");
   Serial.println(requiredDistance);
-  Serial.println("This is a test");
+//   Serial.println("This is a test");
 
   delay(500);
   playAlarm(500);
@@ -77,6 +79,7 @@ void setup() {
   playAlarm(500);
 }
 void playAlarm(int del) {
+  //Code to play alarm with lighting up LED and buzzer
   digitalWrite(indicationLED, HIGH);
   digitalWrite(buzzer, HIGH);
   delay(del);
@@ -93,20 +96,21 @@ void loop() {
   // digitalWrite(G,HIGH);
   // digitalWrite(E,HIGH);
   // digitalWrite(D,HIGH);
+  
+  //Loop code to check when the user activates the system
   sensorActive = digitalRead(button1);
   Serial.println(digitalRead(button1));
   if (sensorActive) {
     digitalWrite(motorOutput, HIGH);
     delay(21000);
     while (true) {
-
+      //Checking distance
       distance = doUltraSonic();
       Serial.print("Distance is");
       Serial.println(distance);
       Serial.print("Required Distance is");
       Serial.println(requiredDistance);
-      Serial.print("Bool is");
-      Serial.println(distance < requiredDistance);
+      //We need to double check the distance to avoid flaws within the sensor
       if (distance < requiredDistance and distance !=0) {
 //        distance = doUltraSonic();
         if (distance < requiredDistance and distance !=0) {
@@ -117,6 +121,7 @@ void loop() {
       }
     }
   }
+  //Setting configuration
   if (digitalRead(button1) == HIGH) {
     selectButton(1);
     delay(500);
@@ -139,6 +144,7 @@ void loop() {
     playAlarm(1000);
     while (true) {
       if (digitalRead(button1) == HIGH) {
+        //Configuring buttons
         configureButton(1);
         break;
       }
@@ -149,7 +155,7 @@ void loop() {
     }
   }
 }
-
+//Code for ultrasonic sensor
 float doUltraSonic() {
   digitalWrite(trigger, LOW);
   delayMicroseconds(2);
@@ -163,20 +169,22 @@ float doUltraSonic() {
   return t * 0.034 / 2;
   
 }
-
-float doUltraSonic2() {
-  digitalWrite(trigger2, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigger2, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigger2, LOW);
-  delayMicroseconds(2);
-  int t = pulseIn(echo2, HIGH);
-  Serial.print("Time: ");
-  Serial.println(t);
-  return t * 0.034 / 2;
+//For second ultra sonic sensor
+// float doUltraSonic2() {
+//   digitalWrite(trigger2, LOW);
+//   delayMicroseconds(2);
+//   digitalWrite(trigger2, HIGH);
+//   delayMicroseconds(10);
+//   digitalWrite(trigger2, LOW);
+//   delayMicroseconds(2);
+//   int t = pulseIn(echo2, HIGH);
+//   Serial.print("Time: ");
+//   Serial.println(t);
+//   return t * 0.034 / 2;
   
-}
+// }
+
+//Code for configuration mode which did not work properly
 void selectButton(int button) {
   switch (button) {
       //      case 1:
@@ -236,6 +244,8 @@ void selectButton(int button) {
       //         break;
   }
 }
+
+//Configuration selection
 void configureButton(int button) {
   playAlarm(200);
   delay(500);
